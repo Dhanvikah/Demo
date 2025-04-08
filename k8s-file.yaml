@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-dashboard
+  template:
+    metadata:
+      labels:
+        app: nginx-dashboard
+    spec:
+      containers:
+        - name: nginx
+          image: komall6/nginx-dash:build-REPLACE_TAG 
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-dashboard-service
+spec:
+  selector:
+    app: nginx-dashboard
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
