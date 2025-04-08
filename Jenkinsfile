@@ -14,7 +14,7 @@ spec:
         path: /var/run/docker.sock 
   containers: 
   - name: docker 
-    image: docker:latest 
+    image: bitnami/kubectl:latest 
     imagePullPolicy: IfNotPresent 
     command: 
     - cat 
